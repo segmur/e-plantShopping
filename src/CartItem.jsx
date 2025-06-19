@@ -9,28 +9,69 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    let total = 0;
+    cart.forEach(item => {
+      // Parse the cost string to a float, removing the '$' symbol
+      const cost = parseFloat(item.cost.substring(1));
+      // Add the item's total cost to the cumulative total
+      total += item.quantity * cost;
+    });
+    // Return the final total formatted to two decimal places
+    return total.toFixed(2);
   };
 
   const handleContinueShopping = (e) => {
-   
+   // Ensure onContinueShopping is a function before calling it
+   if (typeof onContinueShopping === 'function') {
+    onContinueShopping(e);
+  } else {
+    console.warn("onContinueShopping prop is not a function.");
+  }
   };
 
 
 
   const handleIncrement = (item) => {
-  };
+    setCart(currentCart =>
+        currentCart.map(item =>
+          item.name === itemToIncrement.name
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+};
 
   const handleDecrement = (item) => {
-   
+    setCart(currentCart =>
+        currentCart.flatMap(item => {
+          if (item.name === itemToDecrement.name) {
+            if (item.quantity === 1) {
+              return []; // Remove item if quantity becomes 0
+            } else {
+              return { ...item, quantity: item.quantity - 1 }; // Decrement quantity
+            }
+          }
+          return item; // Keep other items as they are
+        })
+      );
   };
 
   const handleRemove = (item) => {
-  };
+    setCart(currentCart =>
+        currentCart.filter(item => item.name !== itemToRemove.name)
+      );
+};
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-  };
+    // Parse the cost string to a float, removing the '$' symbol
+    const cost = parseFloat(item.cost.substring(1));
+    // Calculate the total cost for the item
+    const totalCost = item.quantity * cost;
+    // Return the total cost formatted to two decimal places
+    return totalCost.toFixed(2);
+
+};
 
   return (
     <div className="cart-container">
