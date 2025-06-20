@@ -3,31 +3,42 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
+
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);
-  const dispatch = useDispatch();
-
-  // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
-    let total = 0;
-    cart.forEach(item => {
-      // Parse the cost string to a float, removing the '$' symbol
-      const cost = parseFloat(item.cost.substring(1));
-      // Add the item's total cost to the cumulative total
-      total += item.quantity * cost;
-    });
-    // Return the final total formatted to two decimal places
-    return total.toFixed(2);
-  };
-
-  const handleContinueShopping = (e) => {
-   // Ensure onContinueShopping is a function before calling it
-   if (typeof onContinueShopping === 'function') {
-    onContinueShopping(e);
-  } else {
-    console.warn("onContinueShopping prop is not a function.");
-  }
-  };
+    // Use useSelector to extract the 'items' array from the 'cart' slice of your Redux store.
+    // This hook subscribes the component to Redux store updates, ensuring re-renders when 'cart.items' changes.
+    const cart = useSelector(state => state.cart.items);
+    // useDispatch hook returns a reference to the dispatch function from the Redux store.
+    // This function is used to dispatch actions, which then trigger state updates via reducers.
+    const dispatch = useDispatch();
+  
+    /**
+     * Calculates the total cost for a single item based on its quantity and unit price.
+     * The unit price is extracted from a string (e.g., "$10.00") by removing the '$' and parsing to a float.
+     * @param {object} item - The cart item object, expected to have 'quantity' (number) and 'cost' (string).
+     * @returns {string} The calculated total cost for the item, formatted to two decimal places.
+     */
+    const calculateTotalCost = (item) => {
+      // Safely convert item.cost to a string to ensure substring works, then parse to float.
+      const unitCost = parseFloat(item.cost.toString().substring(1));
+      const totalItemCost = item.quantity * unitCost;
+      return totalItemCost.toFixed(2);
+    };
+  
+    /**
+     * Calculates the cumulative total amount for all products currently present in the cart.
+     * Iterates through all items in the 'cart' array, summing up their individual total costs.
+     * @returns {string} The grand total for the entire cart, formatted to two decimal places.
+     */
+    const calculateTotalAmount = () => {
+      let total = 0;
+      cart.forEach(item => {
+        // Safely convert item.cost to a string, remove '$', and parse to float.
+        const cost = parseFloat(item.cost.toString().substring(1));
+        total += item.quantity * cost;
+      });
+      return total.toFixed(2);
+    };
 
 
 
@@ -62,16 +73,7 @@ const CartItem = ({ onContinueShopping }) => {
       );
 };
 
-  // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
-    // Parse the cost string to a float, removing the '$' symbol
-    const cost = parseFloat(item.cost.substring(1));
-    // Calculate the total cost for the item
-    const totalCost = item.quantity * cost;
-    // Return the total cost formatted to two decimal places
-    return totalCost.toFixed(2);
-
-};
+  
 
   return (
     <div className="cart-container">
