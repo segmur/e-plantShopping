@@ -54,15 +54,11 @@ const CartItem = ({ onContinueShopping }) => {
      * This function is responsible for navigating the user back to the product listing.
      * @param {Event} e - The DOM event object from the button click.
      */
-    const handleContinueShopping = (e) => {
-      e.preventDefault(); // Prevent default link/button behavior
-      // Ensure onContinueShopping is a function before calling it.
-      if (typeof onContinueShopping === 'function') {
-        onContinueShopping(); // Call the parent-provided callback
-      } else {
-        console.warn("`onContinueShopping` prop is not provided or not a function in CartItem.");
-      }
-    };
+    
+  const handleContinueShopping = (e) => {
+    if (onContinueShopping) onContinueShopping(e);
+  };
+    
   
     /**
      * Handles incrementing the quantity of a specific item in the cart.
