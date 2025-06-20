@@ -361,10 +361,10 @@ function ProductList({ onHomeClick }) {
             <div className="navbar" style={styleObj}>
                 <div className="tag" style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', flexShrink: 0 }}> {/* Flex for logo and text */}
                     <div className="luxury" style={{ display: 'flex', alignItems: 'center' }}>
-                        <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="Paradise Nursery Logo" style={{ height: '40px', marginRight: '10px', borderRadius: '50%' }} />
+                        <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="Mursgreen Logo" style={{ height: '40px', marginRight: '10px', borderRadius: '50%' }} />
                         <a href="/" onClick={(e) => handleHomeClick(e)} style={{ textDecoration: 'none' }}>
                             <div>
-                                <h3 style={logoTextStyle}>Paradise Nursery</h3>
+                                <h3 style={logoTextStyle}>Mursgreen</h3>
                                 <i style={taglineStyle}>Where Green Meets Serenity</i>
                             </div>
                         </a>

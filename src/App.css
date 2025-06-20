@@ -1,147 +1,243 @@
 /* LandingPage.css */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.landing-page {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: #f8f8f8;
-}
-
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
-  background-size: 100% 100%;
-  background-position: center;
-  filter: brightness(0.8);
-}
-.content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
- top: 100px;
-  backdrop-filter: blur(4px);
-  background-color: rgba(0,0,0,0.5);
-  gap: 20px;
-}
-
-.landing_content {
- margin-top: 430px;
-  margin-left: 100px;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  text-align: center;
-  /* background-color: red; */
-  width: 400px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-}
-
-.content p,
-.content h1 {
-  color: white;
-}
-
-.content h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-.content p {
-  font-size: 25px;
-}
-
-.divider {
-  width: 50px;
-  height: 2px;
-  background-color: #4caf50;
-  margin: 10px 0;
-}
-
-.get-started-button {
-  padding: 15px 25px;
-  font-size: 23px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 40px;
-}
-
-.get-started-button:hover {
-  background-color: #45a049;
-}
-
-/* ProductList.css */
-
-.product-list-container {
-  position: absolute;
-  overflow-x: hidden;
-  top: 100vh;
-  /* Initially off-screen */
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  /* Adjust background opacity as needed */
-  transition: top 0.5s ease;
-  /* Smooth transition for top property */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
-  z-index: 2;
-  /* Ensure it's above landing page content */
-  backdrop-filter: blur(5px);
-}
-
-.product-list-container.visible {
-  top: 0;
-}
-/* LandingPage.css */
-@media screen and (max-width: 768px) {
-  .content {
-    flex-direction: column;
-    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .landing-page {
+    position: relative;
     width: 100vw;
     height: 100vh;
+    background-color: #f8f8f8;
   }
-
+  
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    filter: brightness(0.8);
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+   top: 100px;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0,0,0,0.5);
+    gap: 20px;
+  }
+  
   .landing_content {
-    margin-top: 100px; /* Adjust as needed */
-    margin-left: 0;
-    width: 80%; /* Adjust as needed */
+    /* This element is now centered by its parent `.content` (flex container). */
+    /* Removed `margin-top/left` and `transform` as they were contradictory with flexbox. */
+    width: 90%; /* Responsive width for most screen sizes */
+    max-width: 600px; /* Maximum width for larger screens */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm); /* Space between internal elements (h1, p, button) */
+    padding: var(--spacing-lg); /* Padding inside the content box */
+    border-radius: var(--border-radius-md); /* Consistent border radius */
+    background-color: rgba(0, 0, 0, 0.3); /* Slightly darker background for text readability */
+    box-shadow: var(--box-shadow-md); /* Consistent shadow */
   }
-
-  .aboutus_container {
-    margin-top: 20px; /* Adjust as needed */
-    width: 80%; /* Adjust as needed */
+  
+  
+  .content p,
+  .content h1 {
+    color: white;
   }
-}
-
-@media screen and (max-width: 480px) {
-  .landing_content {
-    margin-top: 50px; /* Adjust as needed */
-    width: 90%; /* Adjust as needed */
+  
+  .content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
   }
-
-  .aboutus_container {
-    width: 90%; /* Adjust as needed */
+  
+  .content p {
+    font-size: 25px;
   }
-}
+  
+  .divider {
+    width: 50px;
+    height: 2px;
+    background-color: #4caf50;
+    margin: 10px 0;
+  }
+  
+  .get-started-button {
+    padding: 15px 25px;
+    font-size: 23px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 40px;
+  }
+  
+  .get-started-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* ProductList.css */
+  /* ------------------------------------- */
+/* 4. Product List Component Styles      */
+/* ------------------------------------- */
+.product-list-container {
+    position: absolute;
+    overflow-x: hidden; /* Hide horizontal overflow */
+    top: 100vh; /* Initially positioned off-screen below the viewport */
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+    transition: top 0.5s ease; /* Smooth slide-up/down animation */
+    overflow-y: auto; /* Enable vertical scrolling for content overflow */
+    z-index: 2; /* Ensures it appears above the landing page */
+    backdrop-filter: blur(5px); /* Applies a blur effect to content behind it */
+    padding: var(--spacing-md); /* Padding around the product list content */
+  }
+  
+  .product-list-container.visible {
+    top: 0; /* Slides the container into view */
+  }
+  
+  /* Add styles for ProductList's internal structure if needed (e.g., .product-grid, .product-card) */
+  /* As per ProductList.jsx, these are mostly inline, but can be extracted here for better CSS management */
+  .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid columns */
+      gap: var(--spacing-md); /* Spacing between grid items */
+      padding: var(--spacing-md);
+      justify-content: center; /* Center items horizontally */
+      max-width: 1200px; /* Max width for the grid container */
+      margin: var(--spacing-md) auto; /* Center the grid container on the page */
+  }
+  
+  .product-grid h1 {
+      grid-column: 1 / -1; /* Span across all columns in the grid */
+      text-align: center;
+      color: var(--text-dark);
+      margin-top: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-xl);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: var(--spacing-sm);
+  }
+  
+  .product-card {
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      padding: var(--spacing-md);
+      text-align: center;
+      box-shadow: var(--box-shadow-md);
+      background-color: var(--background-white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      height: auto;
+  }
+  
+  .product-card:hover {
+      transform: translateY(-5px); /* Lift effect on hover */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
+  
+  .product-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: var(--spacing-sm);
+  }
+  
+  .product-title {
+      font-weight: bold;
+      font-size: var(--font-size-md);
+      margin-bottom: var(--spacing-xs);
+      color: var(--text-dark);
+  }
+  
+  .product-description {
+      font-size: var(--font-size-sm);
+      color: #666;
+      margin-bottom: var(--spacing-sm);
+      flex-grow: 1; /* Allows description to take available space */
+  }
+  
+  .product-cost {
+      font-weight: bold;
+      font-size: var(--font-size-md);
+      color: var(--primary-color);
+      margin-bottom: var(--spacing-md);
+  }
+  
+  .product-button {
+      background-color: var(--secondary-color); /* Blue for Add to Cart */
+      color: var(--text-light);
+      border: none;
+      border-radius: var(--border-radius-sm);
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .product-button:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      transform: translateY(-2px);
+  }
+  
+  .product-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      transform: none; /* No transform when disabled */
+      box-shadow: none;
+  }
+  /* LandingPage.css */
+  @media screen and (max-width: 768px) {
+    .content {
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+    }
+  
+    .landing_content {
+      margin-top: 100px; /* Adjust as needed */
+      margin-left: 0;
+      width: 80%; /* Adjust as needed */
+      text-align: center;
+    }
+  
+    .aboutus_container {
+      margin-top: 20px; /* Adjust as needed */
+      width: 80%; /* Adjust as needed */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .landing_content {
+      margin-top: 50px; /* Adjust as needed */
+      width: 90%; /* Adjust as needed */
+    }
+  
+    .aboutus_container {
+      width: 90%; /* Adjust as needed */
+    }
+  }
+  
