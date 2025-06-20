@@ -415,90 +415,29 @@ function ProductList({ onHomeClick }) {
                 <CartItem onContinueShopping={handleContinueShopping} />
             ) : showPlants ? (
                 // If showPlants is true (and showCart is false), display the product grid
-                <div className="product-grid" style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', // Responsive grid columns
-                    gap: '20px', // Spacing between grid items
-                    padding: '20px',
-                    justifyContent: 'center', // Center items horizontally
-                    maxWidth: '1200px', // Max width for the grid container
-                    margin: '20px auto', // Center the grid container on the page
-                }}>
+                <div className="product-grid">
                     {plantsArray.map((category, index) => ( // Loop through each category of plants
                         <React.Fragment key={index}> {/* Use React.Fragment to group category title and plants */}
-                            <h1 style={{
-                                gridColumn: '1 / -1', // Span across all columns in the grid
-                                textAlign: 'center',
-                                color: '#333',
-                                marginTop: '30px',
-                                marginBottom: '20px',
-                                fontSize: '2.2em', // Larger font for category titles
-                                borderBottom: '2px solid #4CAF50', // Green underline
-                                paddingBottom: '10px',
-                            }}>
+                            <h1>
                                 {category.category} {/* Display the category name */}
                             </h1>
                             {category.plants.map((plant) => ( // Loop through each plant within the current category
-                                <div className="product-card" key={plant.name} style={{ // Use plant.name as key for uniqueness
-                                    border: '1px solid #ddd',
-                                    borderRadius: '10px', // More rounded corners
-                                    padding: '20px', // Increased padding
-                                    textAlign: 'center',
-                                    boxShadow: '0 6px 12px rgba(0, 0, 0, 0.15)', // More pronounced shadow
-                                    backgroundColor: '#fff',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'space-between',
-                                    transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
-                                    height: 'auto', // Adjust height based on content
-                                }}>
+                                <div className="product-card" key={plant.name}>
                                     <img
                                         className="product-image"
                                         src={plant.image} // Display the plant image
                                         alt={plant.name} // Alt text for accessibility
-                                        style={{
-                                            width: '100%',
-                                            height: '220px', // Slightly increased image height
-                                            objectFit: 'cover',
-                                            borderRadius: '8px',
-                                            marginBottom: '15px', // More space below image
-                                        }}
                                         // Fallback image in case of loading error
                                         onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/220x220/cccccc/000000?text=No+Image"; }}
                                     />
-                                    <div className="product-title" style={{
-                                        fontWeight: 'bold',
-                                        fontSize: '1.3em', // Larger title
-                                        marginBottom: '8px',
-                                        color: '#333',
-                                    }}>{plant.name}</div> {/* Display plant name */}
-                                    <div className="product-description" style={{
-                                        fontSize: '0.95em', // Slightly larger description
-                                        color: '#666',
-                                        marginBottom: '15px',
-                                        flexGrow: 1, // Allows description to take available space
-                                    }}>{plant.description}</div> {/* Display plant description */}
-                                    <div className="product-cost" style={{
-                                        fontWeight: 'bold',
-                                        fontSize: '1.2em', // Larger cost
-                                        color: '#28a745', // Green color for cost
-                                        marginBottom: '20px', // More space above button
-                                    }}>${parseFloat(plant.cost).toFixed(2)}</div> {/* Display plant cost with 2 decimals */}
+                                    <div className="product-title">{plant.name}</div> {/* Display plant name */}
+                                    <div className="product-description">{plant.description}</div> {/* Display plant description */}
+                                    <div className="product-cost">${parseFloat(plant.cost).toFixed(2)}</div> {/* Display plant cost with 2 decimals */}
                                     <button
                                         className="product-button"
                                         onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
                                         disabled={addedToCart[plant.name]} // Disable if already added to cart
-                                        style={{
-                                            backgroundColor: addedToCart[plant.name] ? '#cccccc' : '#007BFF', // Gray if disabled, blue otherwise
-                                            color: 'white',
-                                            border: 'none',
-                                            borderRadius: '5px',
-                                            padding: '12px 20px', // Larger button
-                                            cursor: addedToCart[plant.name] ? 'not-allowed' : 'pointer',
-                                            fontSize: '1.1em', // Larger font for button text
-                                            fontWeight: 'bold',
-                                            transition: 'background-color 0.3s ease, transform 0.2s ease',
-                                        }}
+                                        
                                     >
                                         {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
                                     </button>
@@ -510,7 +449,7 @@ function ProductList({ onHomeClick }) {
             ) : (
                 // If neither cart nor plants are explicitly shown (e.g., initial state or unknown state),
                 // a fallback message is displayed. In a full app, this might be a default dashboard or error.
-                <div style={{ textAlign: 'center', padding: '50px', fontSize: '1.5em', color: '#555' }}>
+                <div>
                     Please use the navigation links above.
                 </div>
             )}
